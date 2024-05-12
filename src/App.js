@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import Projects from './Projects';
@@ -23,20 +23,12 @@ function App() {
                 </nav>
               </Box>
               <Box>
-                <Switch>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                  <Route path="/dashboard">
-                    <Dashboard />
-                  </Route>
-                  <Route path="/projects">
-                    <Projects />
-                  </Route>
-                  <Route path="/settings">
-                    <Settings />
-                  </Route>
-                </Switch>
+                <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Routes>
               </Box>
             </VStack>
           </Grid>
