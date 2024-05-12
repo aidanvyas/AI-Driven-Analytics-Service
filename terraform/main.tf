@@ -44,4 +44,50 @@ resource "aws_instance" "app_server" {
   }
 }
 
+# Define a security group for the EC2 instance to manage network access
+resource "aws_security_group" "app_server_sg" {
+  name        = "app_server_sg"
+  description = "Security group for AppServerInstance EC2 instance"
+
+  # Example rules, these will need to be updated based on actual requirements
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Define an RDS instance for the database
+resource "aws_db_instance" "app_db" {
+  allocated_storage    = 20
+  storage_type         = "gp2"
+  engine               = "mysql"
+  engine_version       = "5.7"
+  instance_class       = "db.t2.micro"
+  name                 = "appdb"
+  username             = "admin"
+  password             = "password" # This should be replaced with a secure password
+  parameter_group_name = "default.mysql5.7"
+  skip_final_snapshot  = true
+
+  tags = {
+    Name = "AppDBInstance"
+  }
+}
+
 # Define additional resources as needed
