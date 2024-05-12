@@ -5,6 +5,7 @@ import Home from './Home';
 import Dashboard from './Dashboard';
 import Projects from './Projects';
 import Settings from './Settings';
+import SignUp from './SignUp';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/settings" element={<Settings />} />
+                  <Route path="/signup" element={<SignUp />} />
                 </Routes>
               </Box>
             </VStack>

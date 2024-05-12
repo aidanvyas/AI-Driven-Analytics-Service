@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Heading, Text, Button, useColorModeValue } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [greeting, setGreeting] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3001/')
@@ -35,7 +37,7 @@ const Home = () => {
         size="lg"
         shadow="md"
         _hover={{ shadow: "xl" }}
-        onClick={() => alert('Navigate to Sign Up or Learn More')}
+        onClick={() => navigate('/signup')}
       >
         Get Started
       </Button>
