@@ -6,26 +6,28 @@ import Dashboard from './Dashboard';
 import Projects from './Projects';
 import Settings from './Settings';
 import SignUp from './SignUp';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import PrivacyPolicy from './PrivacyPolicy'; // Import the PrivacyPolicy component
+import TermsOfService from './TermsOfService'; // Import the TermsOfService component
+import ColorModeSwitcher from './ColorModeSwitcher';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
-        <Flex as="header" align="center" justify="space-between" wrap="wrap" padding="1rem" bg="teal.500" color="white">
+        <Flex as="header" align="center" justify="space-between" wrap="wrap" padding="1rem" bg="blue.800" color="white" borderBottom="1px" borderColor="blue.900">
           <Flex align="center" mr={5}>
             <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-              SaaS Platform
+              AI-Driven Analytics Service
             </Heading>
           </Flex>
 
           <Spacer />
 
           <Box>
-            <Link to="/">Home</Link> |{" "}
-            <Link to="/dashboard">Dashboard</Link> |{" "}
-            <Link to="/projects">Projects</Link> |{" "}
-            <Link to="/settings">Settings</Link>
+            <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
+            <Link to="/dashboard" style={{ marginRight: '10px' }}>Dashboard</Link>
+            <Link to="/projects" style={{ marginRight: '10px' }}>Projects</Link>
+            <Link to="/settings" style={{ marginRight: '10px' }}>Settings</Link>
           </Box>
 
           <ColorModeSwitcher justifySelf="flex-end" />
@@ -41,13 +43,23 @@ function App() {
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/signup" element={<SignUp />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} /> {/* Add route for Privacy Policy */}
+                  <Route path="/terms" element={<TermsOfService />} /> {/* Add route for Terms of Service */}
                 </Routes>
               </Box>
             </VStack>
           </Grid>
         </Box>
-        <Box as="footer" p={5} bg="teal.500" color="white">
-          <h3>© 2024 SaaS Platform, Inc.</h3>
+        <Box as="footer" p={5} bg="blue.800" color="white">
+          <Flex justifyContent="space-between">
+            <Box>
+              <h3>© 2024 AI-Driven Analytics Service, Inc.</h3>
+            </Box>
+            <Box>
+              <Link to="/privacy" style={{ marginRight: '10px', color: 'white' }}>Privacy Policy</Link>
+              <Link to="/terms" style={{ marginRight: '10px', color: 'white' }}>Terms of Service</Link>
+            </Box>
+          </Flex>
         </Box>
       </Router>
     </ChakraProvider>
